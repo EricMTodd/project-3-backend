@@ -23,10 +23,10 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 
-const authController = require("./controllers/authController");
-const battleController = require("./controllers/battleController");
-const fighterController = require("./controllers/fighterController");
-const userController = require("./controllers/userController");
+const authController = require("./controllers/auth");
+const battleController = require("./controllers/battle");
+const fighterController = require("./controllers/fighter");
+const userController = require("./controllers/user");
 
 app.use("/api/v1/battles", battleController);
 app.use("/api/v1/fighters", fighterController);
