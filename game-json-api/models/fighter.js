@@ -5,7 +5,7 @@ const FighterSchema = mongoose.Schema({
     img: String,
     name: String,
     hp: Number,
-    ac: Number,
+    def: Number,
     str: Number,
     dex: Number,
     int: Number,

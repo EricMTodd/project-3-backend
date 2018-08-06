@@ -24,7 +24,7 @@ class Login extends Component {
         });
         const parsedResponse = await loginResponse.json();
         if (parsedResponse.data = "login successful") {
-            this.props.history.push("/fights");
+            this.props.history.push("/supersmashed");
         }
         console.log("This is the response from our express api:", parsedResponse);
     }

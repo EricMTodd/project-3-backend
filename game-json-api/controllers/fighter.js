@@ -27,7 +27,7 @@ router.post("/", async (req, res) => {
         const createdFighter = await Fighter.create(req.body);
         res.json({
             status: 200,
-            data: cratedFighter
+            data: createdFighter
         });
     } catch (err) {
         console.log(err);

@@ -6,7 +6,7 @@ const User = require("../models/user");
 router.post("/login", async (req, res) => {
     console.log("req.session in controllers/auth.js:", req.session)
     try{
-        const createdFighter = await User.create(req.body);
+        const createdUser = await User.create(req.body);
         req.session.logged = true;
         req.session.username = req.body.username;
         res.json({
