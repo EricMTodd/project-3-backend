@@ -10,8 +10,8 @@ const FighterSchema = mongoose.Schema({
     str: Number,
     dex: Number,
     int: Number,
-    minAtk: Number,
-    maxAtk: Number
+    baseAtk: Number,
+    atkVariance: Number
 });
 
 

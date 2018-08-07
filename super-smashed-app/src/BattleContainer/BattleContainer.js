@@ -6,7 +6,7 @@ class BattleContainer extends Component {
         return(
             <div>
                 <div>
-                    List of battles will go here
+                    <h1>Battles:</h1>
                 </div>
             </div>
         )

@@ -8,11 +8,9 @@ class MainContainer extends Component {
         return(
             <div className="mainContainer">
                 <div className="userContainer">
-                    <h1>User</h1>
                     <UserContainer />
                 </div>
                 <div className="battleContainer">
-                    <h1>Battles</h1>
                     <BattleContainer />
                 </div>
             </div>

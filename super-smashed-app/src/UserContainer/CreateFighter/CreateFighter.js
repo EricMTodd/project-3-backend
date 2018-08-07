@@ -9,8 +9,8 @@ class CreateFighter extends Component {
             name: "",
             hp: 0,
             def: 0,
-            minAtk: 0,
-            maxAtk: 0,
+            baseAtk: 0,
+            atkVariance: 0,
             str: 0,
             dex: 0,
             int: 0
@@ -31,15 +31,15 @@ class CreateFighter extends Component {
     checkArchetype = async () => {
         if (this.state.archetype === "Brawler") {
            await this.setState({str: 18, dex: 12, int: 6});
-           await this.setState({hp: (this.state.str - 10)/2 + 10, def: (this.state.dex - 10)/2 + 10, minAtk: this.state.str/2, maxAtk: this.state.dex/2});
+           await this.setState({hp: (this.state.str - 10)/2 + 10, def: (this.state.dex - 10)/2 + 10, baseAtk: this.state.str/2, atkVariance: this.state.dex/2});
         } else if (this.state.archetype === "Scrapper") {
             await this.setState({str: 12, dex: 18, int: 6});
-            await this.setState({hp: (this.state.str - 10)/2 + 10, def: (this.state.dex - 10)/2 + 10, minAtk: this.state.str/2, maxAtk: this.state.dex/2});
+            await this.setState({hp: (this.state.str - 10)/2 + 10, def: (this.state.dex - 10)/2 + 10, baseAtk: this.state.str/2, atkVariance: this.state.dex/2});
         } else if (this.state.archetype === "Arcanist") {
             await this.setState({str: 6, dex: 12, int: 18});
-            await this.setState({hp: (this.state.str - 10)/2 + 10, def: (this.state.dex - 10)/2 + 10, minAtk: this.state.int/2, maxAtk: this.state.int/2});
+            await this.setState({hp: (this.state.str - 10)/2 + 10, def: (this.state.dex - 10)/2 + 10, baseAtk: this.state.int/2, atkVariance: this.state.int/2});
         } else {
-            this.setState({hp: 0, def: 0, minAtk: 0, maxAtk: 0, str: 0, dex: 0, int: 0});
+            this.setState({hp: 0, def: 0, baseAtk: 0, atkVariance: 0, str: 0, dex: 0, int: 0});
             console.log("No archetype set.");
         }
         return console.log(this.state);
@@ -52,13 +52,13 @@ class CreateFighter extends Component {
         const updatedValue = parseInt(oldValue) + 1;
         await this.setState({[e.target.name]: updatedValue});
         if (this.state.archetype === "Brawler") {
-            await this.setState({hp: (this.state.str - 10)/2 + 10, def: (this.state.dex - 10)/2 + 10, minAtk: this.state.str/2, maxAtk: this.state.dex/2});
+            await this.setState({hp: (this.state.str - 10)/2 + 10, def: (this.state.dex - 10)/2 + 10, baseAtk: this.state.str/2, atkVariance: this.state.dex/2});
          } else if (this.state.archetype === "Scrapper") {
-             await this.setState({hp: (this.state.str - 10)/2 + 10, def: (this.state.dex - 10)/2 + 10, minAtk: this.state.str/2, maxAtk: this.state.dex/2});
+             await this.setState({hp: (this.state.str - 10)/2 + 10, def: (this.state.dex - 10)/2 + 10, baseAtk: this.state.str/2, atkVariance: this.state.dex/2});
          } else if (this.state.archetype === "Arcanist") {
-             await this.setState({hp: (this.state.str - 10)/2 + 10, def: (this.state.dex - 10)/2 + 10, minAtk: this.state.int/2, maxAtk: this.state.int/2});
+             await this.setState({hp: (this.state.str - 10)/2 + 10, def: (this.state.dex - 10)/2 + 10, baseAtk: this.state.int/2, atkVariance: this.state.int/2});
          } else {
-             this.setState({hp: 0, def: 0, minAtk: 0, maxAtk: 0, str: 0, dex: 0, int: 0});
+             this.setState({hp: 0, def: 0, baseAtk: 0, atkVariance: 0, str: 0, dex: 0, int: 0});
              console.log("No archetype set.");
          }
          return console.log(this.state);
@@ -71,13 +71,13 @@ class CreateFighter extends Component {
         const updatedValue = parseInt(oldValue) - 1;
         await this.setState({[e.target.name]: updatedValue});
         if (this.state.archetype === "Brawler") {
-            await this.setState({hp: (this.state.str - 10)/2 + 10, def: (this.state.dex - 10)/2 + 10, minAtk: this.state.str/2, maxAtk: this.state.dex/2});
+            await this.setState({hp: (this.state.str - 10)/2 + 10, def: (this.state.dex - 10)/2 + 10, baseAtk: this.state.str/2, atkVariance: this.state.dex/2});
          } else if (this.state.archetype === "Scrapper") {
-             await this.setState({hp: (this.state.str - 10)/2 + 10, def: (this.state.dex - 10)/2 + 10, minAtk: this.state.str/2, maxAtk: this.state.dex/2});
+             await this.setState({hp: (this.state.str - 10)/2 + 10, def: (this.state.dex - 10)/2 + 10, baseAtk: this.state.str/2, atkVariance: this.state.dex/2});
          } else if (this.state.archetype === "Arcanist") {
-             await this.setState({hp: (this.state.str - 10)/2 + 10, def: (this.state.dex - 10)/2 + 10, minAtk: this.state.int/2, maxAtk: this.state.int/2});
+             await this.setState({hp: (this.state.str - 10)/2 + 10, def: (this.state.dex - 10)/2 + 10, baseAtk: this.state.int/2, atkVariance: this.state.int/2});
          } else {
-             this.setState({hp: 0, def: 0, minAtk: 0, maxAtk: 0, str: 0, dex: 0, int: 0});
+             this.setState({hp: 0, def: 0, baseAtk: 0, atkVariance: 0, str: 0, dex: 0, int: 0});
              console.log("No archetype set.");
          }
          return console.log(this.state);
@@ -106,10 +106,10 @@ class CreateFighter extends Component {
                         def: {this.state.def}
                     </label><br/>
                     <label>
-                        minAtk: {this.state.minAtk}
+                        baseAtk: {this.state.baseAtk}
                     </label><br/>
                     <label>
-                        maxAtk: {this.state.maxAtk}
+                        atkVariance: {this.state.atkVariance}
                     </label><br/>
                     <label>
                         str: {this.state.str}

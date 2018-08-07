@@ -52,11 +52,12 @@ class UserContainer extends Component {
         return (
             <div>
                 <div>
-                    User info will go here
+                    <h1>Username:</h1>
                 </div>
                 <div>
-                    List of fighters go here
+                    <h3>Create A Fighter</h3>
                     <CreateFighter addFighter={this.addFighter} />
+                    <h1>Fighters:</h1>
                     <Fighters fighters={this.state.fighters}  />
                 </div>
             </div>
