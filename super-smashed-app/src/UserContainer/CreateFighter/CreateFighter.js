@@ -9,7 +9,8 @@ class CreateFighter extends Component {
             name: "",
             hp: 0,
             def: 0,
-            atk: 0,
+            minAtk: 0,
+            maxAtk: 0,
             str: 0,
             dex: 0,
             int: 0
@@ -18,26 +19,7 @@ class CreateFighter extends Component {
 
     updateFighter = async (e) => {
         await this.setState({[e.target.name]: e.target.value});
-        return
-    }
-
-    incrementAttribute = (e) => {
-        let target = [e.target.name];
-        console.log("target:", target);
-    }
-
-    checkArchetype = async (e) => {
-        if (this.state.archetype === "Brawler") {
-           await this.setState({hp: 14, def: 11, atk: 18, str: 18, dex: 12, int: 6});
-        } else if (this.state.archetype === "Scrapper") {
-            this.setState({hp: 11, def: 14, atk: 18, str: 12, dex: 18, int: 6});
-        } else if (this.state.archetype === "Arcanist") {
-            this.setState({hp: 8, def: 11, atk: 18, str: 6, dex: 12, int: 18});
-        } else {
-            this.setState({hp: 0, def: 0, atk: 0, str: 0, dex: 0, int: 0})
-            console.log("No archetype set.");
-        }
-        return console.log(this.state);
+        return console.log("this.state:", this.state)
     }
 
     selectArchetype = async (e) => {
@@ -46,11 +28,62 @@ class CreateFighter extends Component {
         return
     }
 
+    checkArchetype = async () => {
+        if (this.state.archetype === "Brawler") {
+           await this.setState({str: 18, dex: 12, int: 6});
+           await this.setState({hp: (this.state.str - 10)/2 + 10, def: (this.state.dex - 10)/2 + 10, minAtk: this.state.str/2, maxAtk: this.state.dex/2});
+        } else if (this.state.archetype === "Scrapper") {
+            await this.setState({str: 12, dex: 18, int: 6});
+            await this.setState({hp: (this.state.str - 10)/2 + 10, def: (this.state.dex - 10)/2 + 10, minAtk: this.state.str/2, maxAtk: this.state.dex/2});
+        } else if (this.state.archetype === "Arcanist") {
+            await this.setState({str: 6, dex: 12, int: 18});
+            await this.setState({hp: (this.state.str - 10)/2 + 10, def: (this.state.dex - 10)/2 + 10, minAtk: this.state.int/2, maxAtk: this.state.int/2});
+        } else {
+            this.setState({hp: 0, def: 0, minAtk: 0, maxAtk: 0, str: 0, dex: 0, int: 0});
+            console.log("No archetype set.");
+        }
+        return console.log(this.state);
+    }
+
+    incrementAttribute = async (e) => {
+        e.preventDefault();
+        const targetValue = e.target.value;
+        const oldValue = targetValue;
+        const updatedValue = parseInt(oldValue) + 1;
+        await this.setState({[e.target.name]: updatedValue});
+        if (this.state.archetype === "Brawler") {
+            await this.setState({hp: (this.state.str - 10)/2 + 10, def: (this.state.dex - 10)/2 + 10, minAtk: this.state.str/2, maxAtk: this.state.dex/2});
+         } else if (this.state.archetype === "Scrapper") {
+             await this.setState({hp: (this.state.str - 10)/2 + 10, def: (this.state.dex - 10)/2 + 10, minAtk: this.state.str/2, maxAtk: this.state.dex/2});
+         } else if (this.state.archetype === "Arcanist") {
+             await this.setState({hp: (this.state.str - 10)/2 + 10, def: (this.state.dex - 10)/2 + 10, minAtk: this.state.int/2, maxAtk: this.state.int/2});
+         } else {
+             this.setState({hp: 0, def: 0, minAtk: 0, maxAtk: 0, str: 0, dex: 0, int: 0});
+             console.log("No archetype set.");
+         }
+         return console.log(this.state);
+    }
+
+    decrementAttribute = async (e) => {
+        e.preventDefault();
+        let targetValue = e.target.value;
+        const oldValue = targetValue;
+        const updatedValue = parseInt(oldValue) - 1;
+        await this.setState({[e.target.name]: updatedValue});
+        if (this.state.archetype === "Brawler") {
+            await this.setState({hp: (this.state.str - 10)/2 + 10, def: (this.state.dex - 10)/2 + 10, minAtk: this.state.str/2, maxAtk: this.state.dex/2});
+         } else if (this.state.archetype === "Scrapper") {
+             await this.setState({hp: (this.state.str - 10)/2 + 10, def: (this.state.dex - 10)/2 + 10, minAtk: this.state.str/2, maxAtk: this.state.dex/2});
+         } else if (this.state.archetype === "Arcanist") {
+             await this.setState({hp: (this.state.str - 10)/2 + 10, def: (this.state.dex - 10)/2 + 10, minAtk: this.state.int/2, maxAtk: this.state.int/2});
+         } else {
+             this.setState({hp: 0, def: 0, minAtk: 0, maxAtk: 0, str: 0, dex: 0, int: 0});
+             console.log("No archetype set.");
+         }
+         return console.log(this.state);
+    }
+
     render() {
-        const increment = + 1;
-        const decrement = - 1;
-        console.log(increment)
-        console.log(decrement)
         return(
             <div>
                 <form onChange={this.selectArchetype}>
@@ -73,17 +106,25 @@ class CreateFighter extends Component {
                         def: {this.state.def}
                     </label><br/>
                     <label>
-                        atk: {this.state.atk}
+                        minAtk: {this.state.minAtk}
+                    </label><br/>
+                    <label>
+                        maxAtk: {this.state.maxAtk}
                     </label><br/>
                     <label>
                         str: {this.state.str}
-                        <button name="str" onClick={this.incrementAttribute} value={this.state.increment} >TEST INCREMENT</button>
+                        <button name="str" value={this.state.str} onClick={this.decrementAttribute} >-</button>
+                        <button name="str" value={this.state.str} onClick={this.incrementAttribute} >+</button>
                     </label><br/>
                     <label>
                         dex: {this.state.dex}
+                        <button name="dex" value={this.state.dex} onClick={this.decrementAttribute} >-</button>
+                        <button name="dex" value={this.state.dex} onClick={this.incrementAttribute} >+</button>
                     </label><br/>
                     <label>
                         int: {this.state.int}
+                        <button name="int" value={this.state.int} onClick={this.decrementAttribute} >-</button>
+                        <button name="int" value={this.state.int} onClick={this.incrementAttribute} >+</button>
                     </label><br/>
                     <input type="Submit" value="Create Fighter" />
                 </form>
