@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 
 const FighterSchema = mongoose.Schema({
+    archetype: String,
     img: String,
     name: String,
     hp: Number,
@@ -9,7 +10,7 @@ const FighterSchema = mongoose.Schema({
     str: Number,
     dex: Number,
     int: Number,
-    atk: Number
+    atk: Number,
 });
 
 
