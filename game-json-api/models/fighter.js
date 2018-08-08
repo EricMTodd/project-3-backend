@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 
-const FighterSchema = mongoose.Schema({
+const FighterSchema = new mongoose.Schema({
     archetype: String,
     img: String,
     name: String,
@@ -11,9 +11,8 @@ const FighterSchema = mongoose.Schema({
     dex: Number,
     int: Number,
     baseAtk: Number,
-    atkVariance: Number
+    atkVariance: Number,
+    userGivenName: String,
 });
 
-
-const Fighter = mongoose.model("Fighter", FighterSchema);
-module.exports = Fighter;
+module.exports = mongoose.model("Fighter", FighterSchema);

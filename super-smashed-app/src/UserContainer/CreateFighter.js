@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-
+import Auth from '../Login/Auth.js'
+const auth = new Auth();
 
 class CreateFighter extends Component {
     constructor() {
@@ -13,7 +14,8 @@ class CreateFighter extends Component {
             atkVariance: 0,
             str: 0,
             dex: 0,
-            int: 0
+            int: 0,
+            userGivenName: auth.getProfile().given_name,
          }
     }
 
@@ -90,8 +92,8 @@ class CreateFighter extends Component {
                     <select name="archetypes" >
                     <option value="Select Archetype">Select Archetype</option>
                         <option value="Brawler" onChange={this.selectArchetype} >Brawler</option>
-                        <option value="Scrapper" onChange={this.selectArchetype} >Scrapper</option>  
-                        <option value="Arcanist" onChange={this.selectArchetype} >Arcanist</option>             
+                        <option value="Scrapper" onChange={this.selectArchetype} >Scrapper</option>
+                        <option value="Arcanist" onChange={this.selectArchetype} >Arcanist</option>
                     </select>
                 </form>
                 <form onSubmit={this.props.addFighter.bind(null, this.state)}>

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import CreateFighter from "./CreateFighter/CreateFighter.js";
+import CreateFighter from "./CreateFighter.js";
 import Fighters from "./Fighters/fightersIndex.js";
 
 
