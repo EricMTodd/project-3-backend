@@ -4,14 +4,6 @@ import Fighters from "./Fighters/fightersIndex.js";
 
 
 class UserContainer extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            fighters: []
-        }
-        console.log(this.props)
-    }
-
     render() {
         return (
             <div>

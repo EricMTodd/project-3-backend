@@ -4,13 +4,6 @@ import Battles from "./Battles/battlesIndex.js";
 
 
 class BattleContainer extends Component {
-    constructor() {
-        super();
-        this.state = {
-            battles: []
-        }
-    }
-
     render() {
         return (
             <div>

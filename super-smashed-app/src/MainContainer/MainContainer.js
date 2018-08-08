@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import UserContainer from "../UserContainer/UserContainer.js";
 import BattleContainer from "../BattleContainer/BattleContainer.js";
-import CreateBattle from "../BattleContainer/CreateBattle/CreateBattle.js";
-import CreateFighter from "../UserContainer/CreateFighter/CreateFighter.js";
+import "../BattleContainer/CreateBattle/CreateBattle.js";
+import "../UserContainer/CreateFighter/CreateFighter.js";
 
 
 class MainContainer extends Component {
