@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import UserContainer from "../UserContainer/UserContainer.js";
 import BattleContainer from "../BattleContainer/BattleContainer.js";
+import Player from "../Youtube/YoutubeComp.js";
+
 
 
 class MainContainer extends Component {
@@ -12,6 +14,9 @@ class MainContainer extends Component {
                 </div>
                 <div className="battleContainer">
                     <BattleContainer />
+                </div>
+                <div>
+                  <Player />
                 </div>
             </div>
         )
