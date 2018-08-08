@@ -6,6 +6,7 @@ const BattlesList = (props) => {
         return(
             <li key={battle._id} >
                 <h3>{battle.name}</h3>
+                <h3>Participants: {battle.fighters}</h3>
             </li>
         )
     })
