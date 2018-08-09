@@ -35,7 +35,7 @@ class MainContainer extends Component {
     getBattles = async () => {
         const battles = await fetch("http://localhost:9000/api/v1/battles", {
             credentials: "include",
-            mtehod: "GET"
+            method: "GET"
         }) ;
         const parsedBattles = battles.json();
         return parsedBattles
@@ -44,7 +44,7 @@ class MainContainer extends Component {
     getFighters = async () => {
         const fighters = await fetch("http://localhost:9000/api/v1/fighters", {
             credentials: "include",
-            mtehod: "GET"
+            method: "GET"
         }) ;
         const parsedFighters = fighters.json();
         return parsedFighters
@@ -62,7 +62,7 @@ class MainContainer extends Component {
                 }
             });
             const parsedResponse = await createBattle.json();
-            this.setState({battles: [...this.props.battles, parsedResponse.data]})
+            this.setState({battles: [...this.state.battles, parsedResponse.data]})
         } catch (err) {
             console.log(err)
         }
