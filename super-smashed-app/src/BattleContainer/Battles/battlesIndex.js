@@ -12,7 +12,6 @@ class BattlesList extends Component {
     handleClick = async (e) => {
         let parsedValue = JSON.parse(e.target.value);
         await this.setState({ fighters: [...this.state.fighters, parsedValue] });
-        console.log("this.state:", this.state);
     }
 
     render() {
@@ -30,16 +29,25 @@ class BattlesList extends Component {
                 </div>
             )
         })
-        const allBattles = this.props.battles.map((battle, i) => {
+        const allParticipants = this.state.fighters.map((participant, index) => {
+            let participantName = participant.fighter.name;
+            console.log("this.state:", this.state);
+            return(
+                <div>
+                    <li key={participant._id} >
+                        {participantName}
+                    </li>
+                </div>
+            )
+        })
+        const allBattles = this.props.battles.map((battle, index) => {
         return(
             <div>
-                <div>
+                <div key={battle._id} >
                     <ul>
                     <h2>{battle.name}</h2>
                     <h3>Participants:</h3>
-                        <li key={battle._id} >
-                            {battle.fighters}
-                        </li>
+                        {allParticipants}
                     </ul>
                 </div>
                 <h3>Available Fighters:</h3>
