@@ -10,29 +10,20 @@ class BattlesList extends Component {
     }
 
     handleClick = async (e) => {
+        let parsedValue = JSON.parse(e.target.value);
+        await this.setState({ fighters: [...this.state.fighters, parsedValue] });
         console.log("this.state:", this.state);
-        console.log("this.props:", this.props);
-        console.log("e.target.value:", e.target.value);
-        let target = (e.target.value);
-        // for (let key in target) {
-        //     console.log(key, 'key');
-        //     console.log(target, 'target');
-        //     console.log(target[key], 'target key');
-        // }
-        console.log(typeof target);
-        // e.preventDefault();
-        // this.setState({[e.target.name]: e.target.value})
     }
 
     render() {
-        const allFighters = this.props.fighters.map((fighter, i) => {
+        const allFighters = this.props.fighters.map((fighter, index) => {
             return(
                 <div>
                     <ul>
                         <li key={fighter._id} >
                             {fighter.name}
                             <form>
-                                <button name={fighter.name} type="button" value={fighter} onClick={this.handleClick}>Select Fighter</button>
+                                <button name={fighter.name} type="button" value={JSON.stringify({fighter})} onClick={this.handleClick}>Select Fighter</button>
                             </form>
                         </li>
                     </ul>
