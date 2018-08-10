@@ -117,6 +117,7 @@ class BattlesList extends Component {
                         {allParticipants}
                         <form>
                             <button name="initializeCombat" type="button" onClick={this.initializeCombat} >Begin the Battle!</button>
+                            <button name="deleteBattle" type="button" onClick={this.props.deleteBattle.bind(null, battle._id)} >Delete</button>
                         </form>
                     </ul>
                 </div>

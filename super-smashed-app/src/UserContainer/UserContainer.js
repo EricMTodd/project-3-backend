@@ -14,7 +14,7 @@ class UserContainer extends Component {
                     <h3>Create A Fighter</h3>
                     <CreateFighter addFighter={this.props.addFighter} />
                     <h1>Fighters:</h1>
-                    <Fighters fighters={this.props.fighters}  />
+                    <Fighters fighters={this.props.fighters} deleteFighter={this.props.deleteFighter} />
                 </div>
             </div>
         )

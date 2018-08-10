@@ -86,14 +86,42 @@ class MainContainer extends Component {
         }
     }
 
+    deleteBattle = async (id, e) => {
+        e.preventDefault();
+        console.log("This is: The Most Hated");
+        const deleteBattle = await fetch("http://localhost:9000/api/v1/battles/" + id, {
+            credentials: "include",
+            method: "DELETE"
+        });
+        const parsedResponse = await deleteBattle.json();
+        this.setState({battles:
+        this.state.battles.filter((battle, i) => {
+            return battle._id !== id
+        })});
+    }
+
+    deleteFighter = async (id, e) => {
+        e.preventDefault();
+        console.log("CLICKED BITCH");
+        const deleteFighter = await fetch("http://localhost:9000/api/v1/fighters/" + id, {
+            credentials: "include",
+            method: "DELETE"
+        });
+        const parsedResponse = await deleteFighter.json();
+        this.setState({fighters:
+        this.state.fighters.filter((fighter, i) => {
+            return fighter._id !== id
+        })});
+    }
+
     render() {
         return(
             <div className="mainContainer">
                 <div className="userContainer">
-                    <UserContainer addFighter={this.addFighter} fighters={this.state.fighters} battles={this.state.battles} />
+                    <UserContainer addFighter={this.addFighter} fighters={this.state.fighters} battles={this.state.battles} deleteFighter={this.deleteFighter} />
                 </div>
                 <div className="battleContainer">
-                    <BattleContainer addBattle={this.addBattle} fighters={this.state.fighters} battles={this.state.battles} />
+                    <BattleContainer addBattle={this.addBattle} fighters={this.state.fighters} battles={this.state.battles} deleteBattle={this.deleteBattle} />
                 </div>
             </div>
         )

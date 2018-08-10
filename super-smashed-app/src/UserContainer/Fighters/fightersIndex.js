@@ -1,21 +1,32 @@
 import React, { Component } from "react";
 
 
-const FightersList = (props) => {
-    const allFighters = props.fighters.map((fighter, i) => {
+class FightersList extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            fighters: []
+        }
+    }
+
+    render(props) {
+            const allFighters = this.props.fighters.map((fighter, i) => {
+            return(
+                <li key={fighter._id} >
+                    <h3>{fighter.name}</h3>
+                    <button onClick={this.props.deleteFighter.bind(null, fighter._id)} >DELETE</button>
+                </li>
+            )
+        })
         return(
-            <li key={fighter._id} >
-                <h3>{fighter.name}</h3>
-            </li>
+            <div>
+                <ul>
+                    {allFighters}
+                </ul>
+            </div>
         )
-    })
-    return(
-        <div>
-            <ul>
-                {allFighters}
-            </ul>
-        </div>
-    )
+    }
+
 }
 
 
