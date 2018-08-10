@@ -5,6 +5,7 @@ class CreateFighter extends Component {
     constructor() {
         super();
         this.state = {
+            budget: 12,
             archetype: "",
             name: "",
             hp: 0,
@@ -50,18 +51,26 @@ class CreateFighter extends Component {
         const targetValue = e.target.value;
         const oldValue = targetValue;
         const updatedValue = parseInt(oldValue) + 1;
-        await this.setState({[e.target.name]: updatedValue});
-        if (this.state.archetype === "Brawler") {
-            await this.setState({hp: (this.state.str - 10)/2 + 10, def: (this.state.dex - 10)/2 + 10, baseAtk: this.state.str/2, atkVariance: this.state.dex/2});
-         } else if (this.state.archetype === "Scrapper") {
-             await this.setState({hp: (this.state.str - 10)/2 + 10, def: (this.state.dex - 10)/2 + 10, baseAtk: this.state.str/2, atkVariance: this.state.dex/2});
-         } else if (this.state.archetype === "Arcanist") {
-             await this.setState({hp: (this.state.str - 10)/2 + 10, def: (this.state.dex - 10)/2 + 10, baseAtk: this.state.int/2, atkVariance: this.state.int/2});
-         } else {
-             this.setState({hp: 0, def: 0, baseAtk: 0, atkVariance: 0, str: 0, dex: 0, int: 0});
-             console.log("No archetype set.");
-         }
-         return console.log(this.state);
+        if (this.state.budget < 1) {
+                console.log("No points left to spend.");
+                await this.setState({ budget: 1 });
+            } else {
+                await this.setState({[e.target.name]: updatedValue});
+                if (this.state.archetype === "Brawler") {
+                    await this.setState({hp: (this.state.str - 10)/2 + 10, def: (this.state.dex - 10)/2 + 10, baseAtk: this.state.str/2, atkVariance: this.state.dex/2});
+                } else if (this.state.archetype === "Scrapper") {
+                    await this.setState({hp: (this.state.str - 10)/2 + 10, def: (this.state.dex - 10)/2 + 10, baseAtk: this.state.str/2, atkVariance: this.state.dex/2});
+                } else if (this.state.archetype === "Arcanist") {
+                    await this.setState({hp: (this.state.str - 10)/2 + 10, def: (this.state.dex - 10)/2 + 10, baseAtk: this.state.int/2, atkVariance: this.state.int/2});
+                } else {
+                    this.setState({hp: 0, def: 0, baseAtk: 0, atkVariance: 0, str: 0, dex: 0, int: 0});
+                    console.log("No archetype set.");
+            }
+        }
+        const oldBudget = this.state.budget;
+        const newBudget = parseInt(oldBudget) - 1;
+        await this.setState({budget: newBudget});
+        return console.log("this.state:", this.state);
     }
 
     decrementAttribute = async (e) => {
@@ -69,23 +78,32 @@ class CreateFighter extends Component {
         let targetValue = e.target.value;
         const oldValue = targetValue;
         const updatedValue = parseInt(oldValue) - 1;
-        await this.setState({[e.target.name]: updatedValue});
-        if (this.state.archetype === "Brawler") {
-            await this.setState({hp: (this.state.str - 10)/2 + 10, def: (this.state.dex - 10)/2 + 10, baseAtk: this.state.str/2, atkVariance: this.state.dex/2});
-         } else if (this.state.archetype === "Scrapper") {
-             await this.setState({hp: (this.state.str - 10)/2 + 10, def: (this.state.dex - 10)/2 + 10, baseAtk: this.state.str/2, atkVariance: this.state.dex/2});
-         } else if (this.state.archetype === "Arcanist") {
-             await this.setState({hp: (this.state.str - 10)/2 + 10, def: (this.state.dex - 10)/2 + 10, baseAtk: this.state.int/2, atkVariance: this.state.int/2});
-         } else {
-             this.setState({hp: 0, def: 0, baseAtk: 0, atkVariance: 0, str: 0, dex: 0, int: 0});
-             console.log("No archetype set.");
-         }
-         return console.log(this.state);
+        if (this.state.budget > 11) {
+            console.log("No points left to spend.");
+            await this.setState({ budget: 11 });
+            } else {
+                await this.setState({[e.target.name]: updatedValue});
+                if (this.state.archetype === "Brawler") {
+                    await this.setState({hp: (this.state.str - 10)/2 + 10, def: (this.state.dex - 10)/2 + 10, baseAtk: this.state.str/2, atkVariance: this.state.dex/2});
+                } else if (this.state.archetype === "Scrapper") {
+                    await this.setState({hp: (this.state.str - 10)/2 + 10, def: (this.state.dex - 10)/2 + 10, baseAtk: this.state.str/2, atkVariance: this.state.dex/2});
+                } else if (this.state.archetype === "Arcanist") {
+                    await this.setState({hp: (this.state.str - 10)/2 + 10, def: (this.state.dex - 10)/2 + 10, baseAtk: this.state.int/2, atkVariance: this.state.int/2});
+                } else {
+                    this.setState({hp: 0, def: 0, baseAtk: 0, atkVariance: 0, str: 0, dex: 0, int: 0});
+                    console.log("No archetype set.");
+                }
+            }
+        const oldBudget = this.state.budget;
+        const newBudget = parseInt(oldBudget) + 1;
+        await this.setState({budget: newBudget});
+        return console.log("this.state:", this.state);
     }
 
     render() {
         return(
             <div>
+            <h2>Budget: {this.state.budget}</h2>
                 <form onChange={this.selectArchetype}>
                     <select name="archetypes" >
                     <option value="Select Archetype">Select Archetype</option>
