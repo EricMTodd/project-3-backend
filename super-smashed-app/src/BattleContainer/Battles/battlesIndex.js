@@ -29,13 +29,15 @@ class BattlesList extends Component {
         }
     }
 
-    clearHistory = async (e) => {
-      this.setState({history: []});
-    }
+
 
     handleClick = async (e) => {
         let parsedValue = JSON.parse(e.target.value);
         await this.setState({ fighters: [...this.state.fighters, parsedValue] });
+    }
+
+    clearHistory = async (e) => {
+      this.setState({history: []});
     }
 
     initializeCombat = async (e) => {
@@ -181,7 +183,7 @@ class BattlesList extends Component {
 
 
 
-                            <Button name="deleteBattle" type="button" onClick={this.clearHistory} onClick={this.props.deleteBattle.bind(null, battle._id)} >Delete</Button>
+                            <Button name="deleteBattle" type="button"  onClick={this.props.deleteBattle.bind(null, battle._id)} >Delete</Button>
                         </form>
                 </div>
                 <h6>Available Fighters:</h6>

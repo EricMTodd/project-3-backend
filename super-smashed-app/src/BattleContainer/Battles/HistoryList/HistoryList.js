@@ -16,7 +16,7 @@ const HistoryList = (props) => {
         <div>
             {fullHistory}
             <form>
-            <Button type="Submit" value="Restart" onClick={this.clearHistory}>Restart</Button>
+            <Button type="Submit" value="Restart" onClick={props.clearHistory}>Restart</Button>
             </form>
         </div>
     )
