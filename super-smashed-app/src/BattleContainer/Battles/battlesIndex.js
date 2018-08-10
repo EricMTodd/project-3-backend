@@ -55,7 +55,7 @@ class BattlesList extends Component {
             if (f1Atk > fighter2.hp) {
                console.log(fighter1.name, "has won!");
                let turn1WinState = `${fighter1.name} has won!`;
-               await this.setState({ history: [...this.state.history, turn1WinState] });
+               await this.setState({ history: [...this.state.history, turn1WinState], fighters: [] });
                await this.historyCheck();
                return
             } else {
@@ -92,7 +92,10 @@ class BattlesList extends Component {
             await this.setState({ history: [...this.state.history, turn2HitIndicator] });
             await this.historyCheck();
             if (f2Atk > fighter1.hp) {
-                return console.log(fighter2.name, "has won!");
+                let turn2WinState = `${fighter2.name} has won!`;
+                await this.setState({ history: [...this.state.history, turn2WinState], fighters: [] });
+                await this.historyCheck();
+                return
             } else {
                 let newHp = fighter1.hp -= f2Atk;
                 console.log("fighter1.hp:", newHp);
@@ -125,7 +128,7 @@ class BattlesList extends Component {
                         <li key={fighter._id} >
                             {fighter.name}
                             <form>
-                                <button name={fighter.name} type="button" value={JSON.stringify({fighter})} onClick={this.handleClick}>Select Fighter</button>
+                                <button name={fighter.name} type="button" value={JSON.stringify({fighter})} onClick={this.handleClick}>Select</button>
                             </form>
                         </li>
                     </ul>
@@ -151,7 +154,7 @@ class BattlesList extends Component {
                     <h3>Participants:</h3>
                         {allParticipants}
                         <form>
-                            <button name="initializeCombat" type="button" onClick={this.initializeCombat} >Begin the Battle!</button>
+                            <button name="initializeCombat" type="button" onClick={this.initializeCombat} >Start {battle.name}!</button>
                             <HistoryList history={this.state.history} />
                             <button name="deleteBattle" type="button" onClick={this.props.deleteBattle.bind(null, battle._id)} >Delete</button>
                         </form>

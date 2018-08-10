@@ -14,7 +14,7 @@ class FightersList extends Component {
             return(
                 <li key={fighter._id} >
                     <h3>{fighter.name}</h3>
-                    <button onClick={this.props.deleteFighter.bind(null, fighter._id)} >DELETE</button>
+                    <button onClick={this.props.deleteFighter.bind(null, fighter._id)} >Delete</button>
                 </li>
             )
         })
